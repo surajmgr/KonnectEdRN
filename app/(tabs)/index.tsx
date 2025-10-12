@@ -1,25 +1,30 @@
-import { View, Text, SafeAreaView } from "react-native";
-import { useColorScheme } from "nativewind";
+import { View } from "react-native";
 import { ThemeSelector } from "@/components/theme/ThemeSelector";
 import { Link } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Button } from "@/components/ui/button";
+import { Text } from "@/components/ui/text";
 
 export default function Index() {
-  const { colorScheme, toggleColorScheme } = useColorScheme();
-
   return (
     <SafeAreaView className="flex-1 bg-background">
       <View className="p-6">
-        <Text className="text-foreground text-2xl font-bold">
+        <Text variant={"h1"} className="text-center">
           Hello, Tailwind for React Native 🌙
         </Text>
-        <Text className="text-primary mt-2">
+        <Text className="text-primary mt-2 text-center">
           Theme-aware colors and radii!
         </Text>
 
         <ThemeSelector />
 
-        <Link href="/custom">Custom</Link>
         <Link href="/custom/1">Custom 1</Link>
+
+        <Link className="text-foreground" href="/custom/2">Custom 2</Link>
+
+        <Button className="mt-6" variant={"destructive"}>
+          <Text>Button</Text>
+        </Button>
       </View>
     </SafeAreaView>
   );

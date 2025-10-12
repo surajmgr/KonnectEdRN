@@ -1,6 +1,8 @@
 import { ThemeMode, useTheme } from "@/wrappers/ThemeProvider";
 import React from "react";
-import { View, Text, Pressable } from "react-native";
+import { View } from "react-native";
+import { Text } from "@/components/ui/text";
+import { Button } from "@/components/ui/button";
 
 export function ThemeSelector() {
   const { mode, setMode, currentScheme } = useTheme();
@@ -8,19 +10,16 @@ export function ThemeSelector() {
   const modes: ThemeMode[] = ["light", "dark", "system"];
 
   return (
-    <View className="flex-row items-center justify-center space-x-3 p-4 bg-background">
+    <View className="flex-col items-center justify-center space-x-3 p-4 bg-background">
       <Text className="text-foreground dark:text-foreground-dark">Theme</Text>
       <Text className="text-foreground dark:text-foreground-dark">
         {currentScheme.charAt(0).toUpperCase() + currentScheme.slice(1)}
       </Text>
       {modes.map((m) => (
-        <Pressable
+        <Button
           key={m}
+          variant={mode === m ? "default" : "outline"}
           onPress={() => setMode(m)}
-          className={`px-4 py-2 rounded-lg border ${mode === m
-              ? "bg-primary text-primary-foreground border-primary"
-              : "bg-card border-border"
-            }`}
         >
           <Text
             className={`text-sm ${mode === m ? "text-primary-foreground" : "text-foreground"
@@ -28,7 +27,7 @@ export function ThemeSelector() {
           >
             {m.charAt(0).toUpperCase() + m.slice(1)}
           </Text>
-        </Pressable>
+        </Button>
       ))}
     </View>
   );
