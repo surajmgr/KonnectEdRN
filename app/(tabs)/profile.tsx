@@ -1,12 +1,74 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
-import { View } from "@rn-primitives/slot";
+import { authClient } from "@/lib/auth/authClient";
+import { useState } from "react";
+import { View } from "react-native";
 
-const Custom = () => {
+export default function SignIn() {
+  const { data: session } = authClient.useSession();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    console.log("Signing in...");
+    await authClient.signIn.email({
+      email,
+      password,
+      fetchOptions: {
+        onSuccess: () => {
+          console.log("Signed in.");
+        },
+        onError: (e) => {
+          console.log("Sign in failed.");
+          console.log(e);
+        }
+      }
+    })
+  };
+
+  const handleSocialSignIn = async () => {
+    console.log("Signing in...");
+    await authClient.signIn.social({
+      provider: "google",
+      fetchOptions: {
+        onSuccess: () => {
+          console.log("Signed in.");
+        },
+        onError: (e) => {
+          console.log("Sign in failed.");
+          console.log(e);
+        }
+      },
+      callbackURL: "/search",
+    })
+  };
+
   return (
-    <View className="bg-primary">
-      <Text>Custom</Text>
-    </View>
-  )
-};
+    <View>
+      <Input
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+      />
+      <Input
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+      />
+      <Button onPress={handleLogin} variant="default">
+        <Text>Sign In</Text>
+      </Button>
 
-export default Custom
+      <Button onPress={() => authClient.signOut()} variant="destructive">
+        <Text>Sign Out</Text>
+      </Button>
+
+      <Button onPress={handleSocialSignIn} variant="default">
+        <Text>Sign In with Google</Text>
+      </Button>
+
+      <Text>Session: {JSON.stringify(session)}</Text>
+    </View>
+  );
+}

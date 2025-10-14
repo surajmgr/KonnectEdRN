@@ -1,58 +1,123 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
+    /* Light Mode Colors */
     --background: 0 0% 100%;
-    --foreground: 0 0% 15%;
-    --card: 0 0% 99%;
-    --card-foreground: 0 0% 15%;
+    --foreground: 222 47% 11%;
+    
+    /* Card & Surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 15%;
-    --primary: 250 60% 55%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 250 40% 95%;
-    --secondary-foreground: 250 50% 45%;
-    --muted: 250 15% 96%;
-    --muted-foreground: 250 10% 55%;
-    --accent: 250 45% 92%;
-    --accent-foreground: 250 60% 35%;
-    --destructive: 25 80% 65%;
-    --border: 250 20% 90%;
-    --input: 250 25% 95%;
-    --ring: 250 60% 55%;
-    --radius: 0.625rem;
-    --chart-1: 250 60% 55%;
-    --chart-2: 200 65% 65%;
-    --chart-3: 280 50% 45%;
-    --chart-4: 160 70% 75%;
-    --chart-5: 300 65% 60%;
+    --popover-foreground: 222 47% 11%;
+    
+    /* Primary Brand - Fresh Peaceful Blue */
+    --primary: 216 100% 58%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - Soft Teal */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    
+    /* Muted */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    /* Accent - Soft Cyan */
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Success - Calm Green */
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    
+    /* Warning - Soft Amber */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    
+    /* Info - Light Sky Blue */
+    --info: 204 94% 94%;
+    --info-foreground: 216 100% 58%;
+    
+    /* Border & Input */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 216 100% 58%;
+    
+    /* Radius */
+    --radius: 0.5rem;
   }
- 
+  
   .dark:root {
-    --background: 250 30% 12%;
-    --foreground: 0 0% 95%;
-    --card: 250 40% 18%;
-    --card-foreground: 0 0% 95%;
-    --popover: 250 40% 18%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 250 70% 70%;
-    --primary-foreground: 250 30% 10%;
-    --secondary: 250 45% 25%;
-    --secondary-foreground: 250 20% 85%;
-    --muted: 250 50% 22%;
-    --muted-foreground: 250 25% 65%;
-    --accent: 250 55% 30%;
-    --accent-foreground: 250 50% 80%;
-    --destructive: 25 70% 70%;
-    --border: 250 45% 30%;
-    --input: 250 50% 25%;
-    --ring: 250 70% 70%;
-    --chart-1: 250 70% 70%;
-    --chart-2: 200 65% 75%;
-    --chart-3: 280 50% 65%;
-    --chart-4: 160 70% 80%;
-    --chart-5: 300 65% 72%;
+    /* Dark Mode Colors */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    
+    /* Card & Surfaces */
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+    
+    /* Popover */
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+    
+    /* Primary Brand - Fresh Peaceful Blue (slightly lighter for dark) */
+    --primary: 216 100% 65%;
+    --primary-foreground: 222 47% 11%;
+    
+    /* Secondary - Dark Teal */
+    --secondary: 217 33% 21%;
+    --secondary-foreground: 210 40% 98%;
+    
+    /* Muted */
+    --muted: 217 33% 21%;
+    --muted-foreground: 215 20% 65%;
+    
+    /* Accent - Vibrant Cyan */
+    --accent: 199 89% 55%;
+    --accent-foreground: 222 47% 11%;
+    
+    /* Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    
+    /* Success - Calm Green */
+    --success: 160 84% 45%;
+    --success-foreground: 222 47% 11%;
+    
+    /* Warning - Soft Amber */
+    --warning: 38 92% 55%;
+    --warning-foreground: 222 47% 11%;
+    
+    /* Info - Deep Blue */
+    --info: 217 33% 21%;
+    --info-foreground: 216 100% 70%;
+    
+    /* Border & Input */
+    --border: 217 33% 21%;
+    --input: 217 33% 21%;
+    --ring: 216 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }

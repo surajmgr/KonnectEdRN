@@ -11,7 +11,7 @@ export function ThemeSelector() {
 
   return (
     <View className="flex-col items-center justify-center space-x-3 p-4 bg-background">
-      <Text className="text-foreground dark:text-foreground-dark">Theme</Text>
+      <Text className="w-full text-foreground dark:text-foreground-dark">Theme</Text>
       <Text className="text-foreground dark:text-foreground-dark">
         {currentScheme.charAt(0).toUpperCase() + currentScheme.slice(1)}
       </Text>
