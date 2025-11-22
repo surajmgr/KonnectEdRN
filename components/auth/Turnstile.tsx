@@ -1,6 +1,6 @@
-import React, { useState, useRef, useImperativeHandle, forwardRef } from 'react';
-import { View, StyleSheet } from 'react-native';
-import WebView, { WebViewMessageEvent } from 'react-native-webview';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import WebView, { type WebViewMessageEvent } from 'react-native-webview';
 
 interface TurnstileProps {
   onTokenReceived: (token: string | null) => void;
@@ -10,41 +10,40 @@ export interface TurnstileRef {
   reset: () => void;
 }
 
-export const Turnstile = forwardRef<TurnstileRef, TurnstileProps>(
-  ({ onTokenReceived }, ref) => {
-    const [webViewHeight, setWebViewHeight] = useState(80);
-    const webViewRef = useRef<WebView>(null);
+export const Turnstile = forwardRef<TurnstileRef, TurnstileProps>(({ onTokenReceived }, ref) => {
+  const [webViewHeight, setWebViewHeight] = useState(80);
+  const webViewRef = useRef<WebView>(null);
 
-    const handleMessage = (event: WebViewMessageEvent) => {
-      const data = JSON.parse(event.nativeEvent.data);
-      if (data.type === 'height') {
-        setWebViewHeight(data.height);
-      } else if (data.type === 'token') {
-        onTokenReceived(data.token);
-      }
-    };
+  const handleMessage = (event: WebViewMessageEvent) => {
+    const data = JSON.parse(event.nativeEvent.data);
+    if (data.type === 'height') {
+      setWebViewHeight(data.height);
+    } else if (data.type === 'token') {
+      onTokenReceived(data.token);
+    }
+  };
 
-    useImperativeHandle(ref, () => ({
-      reset: () => {
-        onTokenReceived(null);
-        webViewRef.current?.injectJavaScript(`
+  useImperativeHandle(ref, () => ({
+    reset: () => {
+      onTokenReceived(null);
+      webViewRef.current?.injectJavaScript(`
           if (window.turnstileWidget) {
             turnstile.reset(window.turnstileWidget);
           }
           true;
         `);
-      },
-    }));
+    },
+  }));
 
-    return (
-      <View style={[styles.container, { height: webViewHeight }]}>
-        <WebView
-          ref={webViewRef}
-          originWhitelist={['*']}
-          onMessage={handleMessage}
-          source={{
-            baseUrl: process.env.EXPO_PUBLIC_API_URL,
-            html: `
+  return (
+    <View style={[styles.container, { height: webViewHeight }]}>
+      <WebView
+        ref={webViewRef}
+        originWhitelist={['*']}
+        onMessage={handleMessage}
+        source={{
+          baseUrl: process.env.EXPO_PUBLIC_AUTH_API_URL,
+          html: `
               <!DOCTYPE html>
               <html>
                 <head>
@@ -83,13 +82,12 @@ export const Turnstile = forwardRef<TurnstileRef, TurnstileProps>(
                 </body>
               </html>
             `,
-          }}
-          style={styles.webView}
-        />
-      </View>
-    );
-  }
-);
+        }}
+        style={styles.webView}
+      />
+    </View>
+  );
+});
 
 const styles = StyleSheet.create({
   container: { width: '100%' },

@@ -1,6 +1,3 @@
-import { TabConfigProps } from "@/components/ui/tab-bar";
+import type { TabConfigProps } from '@/components/ui/tab-bar';
 
-export type TabConfig = Record<
-  string,
-  TabConfigProps
->;
+export type TabConfig = Record<string, TabConfigProps>;
