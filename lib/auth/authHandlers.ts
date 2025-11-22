@@ -146,6 +146,39 @@ export const handlePassKeySignIn = async (args: { callbackUrl?: Route }) => {
   }
 };
 
+// Passkey Register
+export const handlePassKeyRegister = async () => {
+  console.log("Adding Passkey...");
+  const notifToast = toast.loading("Adding Passkey...");
+  const result = await authClient.passkey.addPasskey({
+    fetchOptions: {
+      onSuccess: () => {
+        toast.success("Passkey added", {
+          id: notifToast,
+        });
+      },
+      onError: () => {
+        toast.error("Failed to add Passkey", {
+          id: notifToast,
+        });
+      },
+    },
+  });
+
+  if (!result) {
+    return null;
+  }
+
+  const { data, error } = result;
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+
 // Anonymous Sign In
 export const handleAnonymousSignIn = async (args: { callbackUrl?: Route }) => {
   try {

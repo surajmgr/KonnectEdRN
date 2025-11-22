@@ -3,6 +3,7 @@ import { ThemeSelector } from "@/components/theme/ThemeSelector";
 import { Link } from "expo-router";
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
+import { handlePassKeyRegister } from "@/lib/auth/authHandlers";
 
 export default function Index() {
   return (
@@ -21,7 +22,7 @@ export default function Index() {
       <Link className="text-foreground" href="/custom/2">Custom 2</Link>
       <Link className="text-foreground" href="/login">Custom 2</Link>
 
-      <Button className="mt-6" variant={"destructive"}>
+      <Button className="mt-6" variant={"destructive"} onPress={handlePassKeyRegister}>
         <Text>Button</Text>
       </Button>
     </View>

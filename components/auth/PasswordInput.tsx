@@ -3,7 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Text } from '@/components/ui/text';
-import { Eye, EyeOff } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 interface PasswordInputProps {
   label: string;
@@ -43,9 +43,9 @@ export const PasswordInput = ({
           disabled={!editable}
         >
           {showPassword ? (
-            <EyeOff size={22} color="#9CA3AF" />
+            <Ionicons name="eye-off" size={22} color="#9CA3AF" />
           ) : (
-            <Eye size={22} color="#9CA3AF" />
+            <Ionicons name="eye" size={22} color="#9CA3AF" />
           )}
         </TouchableOpacity>
       </View>

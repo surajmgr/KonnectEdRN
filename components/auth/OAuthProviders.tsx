@@ -2,8 +2,7 @@ import React from 'react';
 import { View, useColorScheme } from 'react-native';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { AntDesign } from '@expo/vector-icons';
-import { Key } from 'lucide-react-native';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 interface OAuthProvidersProps {
   onGoogleClick: () => void;
@@ -43,7 +42,7 @@ export const OAuthProviders = ({
         disabled={isLoading}
         className="h-12 flex flex-row items-center justify-center gap-2 border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900"
       >
-        <Key size={20} color={isDark ? 'white' : 'black'} />
+        <Ionicons name="key-outline" size={20} color={isDark ? 'white' : 'black'} />
         <Text className="text-gray-900 dark:text-gray-100 font-medium">
           Continue with Passkey
         </Text>

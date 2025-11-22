@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { ArrowLeft } from 'lucide-react-native';
 import { PasswordInput } from '@/components/auth/PasswordInput';
 import { signInWithPassword, signUpWithPassword } from '@/lib/auth/authHandlers';
 import { Route, useRouter } from 'expo-router';
 import { getErrorMessage } from '@/lib/utils/error';
 import { passwordSchema, signUpPasswordSchema } from '@/lib/schema/auth';
 import { toast } from '@backpackapp-io/react-native-toast';
+import { Ionicons } from '@expo/vector-icons';
 
 interface PasswordStepProps {
   email: string;
@@ -78,7 +78,7 @@ export const PasswordStep = ({
         className="self-start -ml-2"
       >
         <View className="flex-row items-center gap-2">
-          <ArrowLeft size={18} />
+          <Ionicons name="arrow-back" size={18} />
           <Text className="text-base">Back</Text>
         </View>
       </Button>

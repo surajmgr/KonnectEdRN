@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { ArrowLeft } from 'lucide-react-native';
 import { OTPInput } from '@/components/auth/OTPInput';
 import { sendVerificationOTP, signInWithEmailOTP } from '@/lib/auth/authHandlers';
 import { Route } from 'expo-router';
@@ -10,6 +9,7 @@ import { Turnstile, TurnstileRef } from '@/components/auth/Turnstile';
 import { getErrorMessage } from '@/lib/utils/error';
 import { toast } from '@backpackapp-io/react-native-toast';
 import { otpSchema } from '@/lib/schema/auth';
+import { Ionicons } from '@expo/vector-icons';
 
 interface OTPStepProps {
   email: string;
@@ -131,7 +131,7 @@ export const OTPStep = ({ email, callbackUrl, onBack, onSuccess }: OTPStepProps)
         className="self-start -ml-2"
       >
         <View className="flex-row items-center gap-2">
-          <ArrowLeft size={18} />
+          <Ionicons name="arrow-back" size={18} />
           <Text className="text-base">Back</Text>
         </View>
       </Button>

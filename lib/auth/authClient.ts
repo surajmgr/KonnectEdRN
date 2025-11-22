@@ -18,6 +18,7 @@ export const authClient = createAuthClient({
       storage: SecureStore,
     }),
     usernameClient(),
+    // TODO: Expo passkey client from expo-passkey, else this won't work on RN
     passkeyClient(),
     anonymousClient(),
     oneTapClient({

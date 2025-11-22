@@ -9,11 +9,11 @@ import {
   handlePassKeySignIn,
   handleAnonymousSignIn,
 } from '@/lib/auth/authHandlers';
-import { Mail } from 'lucide-react-native';
 import { Route } from 'expo-router';
 import { getErrorMessage } from '@/lib/utils/error';
 import { emailSchema } from '@/lib/schema/auth';
 import { colorScheme } from 'nativewind';
+import { Ionicons } from '@expo/vector-icons';
 
 interface EmailStepProps {
   authMode: 'signin' | 'signup';
@@ -108,7 +108,7 @@ export const EmailStep = ({ callbackUrl, onEmailContinue }: EmailStepProps) => {
       <View className="gap-4">
         <View className="relative">
           <View className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
-            <Mail size={20} color={colorScheme.get() === 'dark' ? '#9CA3AF' : '#9CA3AF'} />
+            <Ionicons name="mail-outline" size={20} color={colorScheme.get() === 'dark' ? '#9CA3AF' : '#9CA3AF'} />
           </View>
           <Input
             placeholder="Enter your email"
